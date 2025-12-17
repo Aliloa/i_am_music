@@ -1,0 +1,256 @@
+:root{
+  --bg: #f3efe6;
+  --ink: #1b1b1b;
+  --muted: rgba(0,0,0,.55);
+  --accent: #8b2d2b; 
+  --radius: 18px;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+.page{
+  max-width: 430px;
+  margin: 0 auto;
+}
+
+.content{
+  padding: 18px 18px 28px;
+}
+
+.listenNow{
+  position: fixed;
+  top: 14px;
+  right: 18px;
+  color: var(--accent);
+  text-decoration: underline;
+  font-weight: 700;
+  letter-spacing: .3px;
+  z-index: 50;
+}
+
+.hero{
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+
+  background: #333;
+  background-size: cover;
+  background-position: center;
+
+  position: relative;
+
+  border-radius: 0 0 22px 22px;
+  margin-top: 0;
+}
+
+.heroOverlay{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
+  background: linear-gradient(to top, rgba(0,0,0,.72), rgba(0,0,0,.00) 60%);
+}
+
+.heroTitle{
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  color: #fff;
+  line-height: 1.05;
+}
+
+.heroFans{
+  margin: 6px 0 0;
+  color: rgba(255,255,255,.75);
+  font-size: 12px;
+}
+
+.block{ margin-top: 22px; }
+
+.h2{
+  margin: 0 0 10px;
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--accent);
+  font-size: 34px;
+  font-weight: 500;
+}
+
+.aboutText{
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #1d1d1d;
+}
+
+/* top tracks */
+
+.tracksGrid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 14px;
+}
+
+.trackCard{
+  display: block;
+}
+
+.trackCover{
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 4px;
+  object-fit: cover;
+  background: rgba(0,0,0,.08);
+  display:block;
+}
+
+.trackLabel{
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: #1d1d1d;
+}
+
+/* discover more */
+
+.discoverLink{
+  display: inline-block;
+  color: #1d1d1d;
+  text-decoration: underline;
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.bottomSpace{ padding-bottom: 14px; }
+
+/* desktop */
+
+@media (min-width: 900px){
+
+  .page{
+    max-width: 1200px;
+    padding: 32px 40px 40px;
+  }
+
+  .content{
+    padding: 0;
+  }
+
+  .listenNow{
+    top: 28px;
+    right: 40px;
+  }
+
+  .page{
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 36px 42px;
+    align-items: start;
+  }
+
+  .hero{
+    height: 420px;
+    border-radius: 0; 
+  }
+
+  .content .block:first-child{
+    margin-top: 0;
+  }
+
+  .tracksGrid{
+    grid-template-columns: repeat(5, minmax(0,1fr));
+    gap: 18px;
+  }
+
+  .h2{ font-size: 46px; }
+}
+
+/* search */
+
+.searchPage{
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 24px 18px 28px;
+}
+
+.searchTitle{
+  margin: 0 0 14px;
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--accent);
+  font-size: 34px;
+  font-weight: 500;
+}
+
+.searchForm{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.searchInput{
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.18);
+  background: rgba(255,255,255,.35);
+  outline: none;
+  font: inherit;
+}
+
+.searchBtn{
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.18);
+  background: #fff;
+  cursor: pointer;
+  font: inherit;
+}
+
+.searchResultsGrid{
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 12px;
+}
+
+.artistResult{
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+  background: rgba(255,255,255,.25);
+}
+
+.artistResult img{
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: rgba(0,0,0,.06);
+}
+
+.artistResult .name{
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.artistResult .fans{
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.searchHint{ margin-top: 14px; }
