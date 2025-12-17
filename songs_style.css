@@ -1,0 +1,64 @@
+main {
+    align-items: center;
+    height: 100vh;
+}
+
+.album-cover {
+    max-width: 100%;
+    border-radius: 0px 0px 15px 15px;
+}
+
+.album-songs {
+    max-height: 60vh;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 24px;
+}
+
+.song {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    background-color: transparent;
+    border: 0;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.2);
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.global-player {
+    display: flex;
+    background-color: black;
+    color: white;
+    z-index: 10;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+}
+
+@media (min-width: 600px) {
+    main {
+        display: flex;
+    }
+
+    .album-cover {
+        border-radius: 500px;
+        max-width: 580px;
+        transform: translate(-20%);
+    }
+}
