@@ -13,11 +13,13 @@ body{
   background: var(--bg);
   color: var(--ink);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  overflow-x: hidden;
 }
 
 /* mobile */
 
 .page{
+  width: 100%;
   max-width: 430px;
   margin: 0 auto;
 
@@ -31,6 +33,27 @@ body{
 
 .content{
   padding: 18px 18px 28px;
+}
+
+.content,
+.discover{
+  max-width: 100%;
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.aboutText,
+.trackLabel,
+.discoverLink{
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.tracksGrid,
+.trackCard,
+.trackCover{
+  max-width: 100%;
 }
 
 .listenNow{
