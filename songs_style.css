@@ -42,13 +42,18 @@ button:hover {
 
 .global-player {
     display: flex;
-    background-color: black;
-    color: white;
+    justify-content: center;
+    align-items: center;
+    background-color: #F5F1E8;
     z-index: 10;
     position: absolute;
     bottom: 0;
     right: 0;
     width: 100%;
+}
+
+audio {
+    background-color: #F5F1E8;
 }
 
 @media (min-width: 600px) {

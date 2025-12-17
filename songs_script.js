@@ -1,5 +1,10 @@
 var album_number = 761201231;
 
+//player
+const globalAudio = document.getElementById("global-audio");
+const globalTitle = document.getElementById("global-title");
+const globalArtist = document.getElementById("global-artist");
+
 //API CALL
 console.log("ta gramnd mere");
 fetch("https://corsproxy.io/?https://api.deezer.com/album/" + album_number)
@@ -31,25 +36,52 @@ fetch("https://corsproxy.io/?https://api.deezer.com/album/" + album_number)
                 </div>
   `;
     });
+    //PLAY LOGIC
+
+    document.querySelectorAll(".song").forEach((song, index) => {
+      const playBtn = song.querySelector(".play-btn");
+
+      playBtn.addEventListener("click", () => {
+        playTrackFresh(index);
+        // const track = tracks[index];
+        // playTrack(track);
+      });
+    });
+
+    function playTrack(track) {
+      globalAudio.src = track.preview; // URL de preview Deezer
+      globalTitle.textContent = track.title;
+      globalArtist.textContent = track.artist.name;
+      globalAudio.play();
+    }
 
   })
   .catch(error => {
     console.error("Erreur :", error);
   });
-  
+
 // à mettre dans le foreach pour tester si l'audio marche <audio controls src="${track.preview}"></audio>
-//PLAY LOGIC
 
-// let isPlaying = false;
+//IMPORTANT GENERER LE LIEN AU MOMENT DU CLIQUE SUR LE BTN PLAY ET NN AU CHARGEMENT DE LA PAGE!!!
+//POUR EVITER LES PROBLEMES D'EXPIRATION
 
-// const globalAudio = document.getElementById("global-audio");
+let isLoading = false; //avoid spam
 
-// document.querySelectorAll(".song").forEach(song => {
-//   const playBtn = song.querySelector(".play-btn");
+function playTrackFresh(index) {
+  if (isLoading) return;//avoid spam
+  isLoading = true;
 
-//   playBtn.addEventListener("click"), () => {
-//     globalAudio.src = audioSrc;
-//     globalAudio.play();
-//     isPlaying = true;
-//   }
-// })
+  fetch("https://corsproxy.io/?https://api.deezer.com/album/" + album_number)
+    .then(res => res.json())
+    .then(data => {
+      const track = data.tracks.data[index];
+console.log(globalAudio.src);
+
+      globalAudio.src = track.preview; // URL fraîche
+      globalTitle.textContent = track.title;
+      globalArtist.textContent = track.artist.name;
+
+      globalAudio.play();
+    })
+    .finally(() => isLoading = false);
+}
