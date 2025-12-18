@@ -1,4 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&display=swap');
+
+:root {
+    --bg-color: #242424;
+    --main-color: #F1F3F4;
+    --subtle: #6B6B6B;
+}
 
 * {
     margin: 0;
@@ -6,6 +12,24 @@
     box-sizing: border-box;
 }
 
-h1 {
+body {
+    background-color: var(--bg-color);
+    color: var(--main-color);
+    font-family: "Courier Prime", monospace;
+    font-weight: 400;
+}
+
+h1,
+h2,
+h3 {
     font-family: "Libre Baskerville", serif;
+    font-weight: 400;
+}
+
+a {
+    color: var(--main-color);
+}
+
+button {
+    color: var(--bg-color);
 }

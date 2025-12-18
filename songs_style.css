@@ -1,6 +1,36 @@
 main {
     align-items: center;
     height: 100vh;
+    /* overflow: hidden; */
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 50px;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+.content {
+    flex: 1;
+    height: 100%;
+    overflow: hidden;
+    max-height: 70vh;
+    max-width: 800px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: auto;
+    width: 100%;
+}
+
+.info {
+    text-shadow: -2px 4px 4px rgba(0, 0, 0, 1);
+}
+
+.artist, .global-artist {
+    color: var(--subtle);
 }
 
 .album-cover {
@@ -9,18 +39,40 @@ main {
 }
 
 .album-songs {
-    max-height: 60vh;
-    overflow: scroll;
+    height: 100%;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 14px;
-    padding: 24px;
+    padding: 4px;
+    padding-right: 8px;
+    scrollbar-color: var(--main-color) transparent;
 }
 
 .song {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 8px 18px;
+
+}
+
+.box {
+    background-color: var(--main-color);
+    /* opacity: 0.6; */
+    color: var(--bg-color);
+    border-radius: 15px;
+    /* box-shadow: inset 2px -3px 8px rgba(0, 0, 0, 0.5); */
+}
+
+.active {
+    background-color: var(--bg-color);
+    color: var(--main-color);
+    box-shadow: -1px 1px 4px rgba(255, 255, 255, 0.5);
+}
+
+.active button {
+    color: var(--main-color);
 }
 
 button {
@@ -41,15 +93,22 @@ button:hover {
 }
 
 .global-player {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
-    background-color: #F5F1E8;
     z-index: 10;
     position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 100%;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    gap: 8px;
+    padding: 0px 8px;
+}
+
+.global-cover {
+    max-width: 33px;
+    border-radius: 2px;
 }
 
 audio {
@@ -58,12 +117,20 @@ audio {
 
 @media (min-width: 600px) {
     main {
-        display: flex;
+        flex-direction: row;
+    }
+
+    h1 {
+        font-size: 4rem;
     }
 
     .album-cover {
         border-radius: 500px;
         max-width: 580px;
         transform: translate(-20%);
+    }
+
+    .album-songs {
+        padding-bottom: 0px;
     }
 }

@@ -1,29 +1,33 @@
-var album_number = 761201231;
+var album_number = 843363632;
+const timestamp = Date.now(); //bypass the cache so it stops using the expired url for the tracks preview
 
-//player
-const globalAudio = document.getElementById("global-audio");
-const globalTitle = document.getElementById("global-title");
-const globalArtist = document.getElementById("global-artist");
+//convertir les seoncdes en minutes
+function formatDuration(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+}
 
 //API CALL
-console.log("ta gramnd mere");
-fetch("https://corsproxy.io/?https://api.deezer.com/album/" + album_number)
+fetch(`https://corsproxy.io/?https://api.deezer.com/album/${album_number}?_=${timestamp}`)
   .then(response => response.json())
   .then(data => {
     console.log(data);
 
-    //get title
+    //title info
     document.getElementById("album-title").textContent = data.title;
     document.getElementById("album-cover").src = data.cover_xl;
+    document.getElementById("album-artist").textContent = data.artist.name;
+    document.getElementById("album-artist-id").href = "/api-deezer-artist/index.html?id=" + data.artist.id;
 
-    //get tracks
+    //tracks info
     const tracks = data.tracks.data;
 
     const songs = document.getElementById("album-songs");
 
     tracks.forEach((track, index) => {
       songs.innerHTML += `
-                    <div class="song">
+                    <div class="song box">
                     <div class="flex">
                         <p class="track-number">${index + 1}.</p>
                         <button class="play-btn">▶</button>
@@ -32,26 +36,41 @@ fetch("https://corsproxy.io/?https://api.deezer.com/album/" + album_number)
                             <p class="artist">${data.artist.name}</p>
                         </div>
                     </div>
-                    <span class="time">${track.duration}</span>
+                    <span class="time">${formatDuration(track.duration)}</span>
                 </div>
   `;
     });
+
     //PLAY LOGIC
+
+    const globalAudio = document.getElementById("global-audio");
+    const globalTitle = document.getElementById("global-title");
+    const globalArtist = document.getElementById("global-artist");
+    const globalCover = document.getElementById("global-cover");
+    const globalPlayer = document.querySelector(".global-player");
 
     document.querySelectorAll(".song").forEach((song, index) => {
       const playBtn = song.querySelector(".play-btn");
 
-      playBtn.addEventListener("click", () => {
-        playTrackFresh(index);
-        // const track = tracks[index];
-        // playTrack(track);
+      playBtn.addEventListener("click", () => { //on play
+        const track = tracks[index];
+        playTrack(track);
+        song.classList.add("active");
+
+        document.querySelectorAll(".song").forEach(s => {
+          if (s !== song) s.classList.remove("active");
+        });
       });
     });
 
     function playTrack(track) {
-      globalAudio.src = track.preview; // URL de preview Deezer
+      globalPlayer.style.display = "flex";
+
+      globalAudio.src = track.preview;
       globalTitle.textContent = track.title;
       globalArtist.textContent = track.artist.name;
+      globalCover.src = track.album.cover;
+
       globalAudio.play();
     }
 
@@ -59,29 +78,3 @@ fetch("https://corsproxy.io/?https://api.deezer.com/album/" + album_number)
   .catch(error => {
     console.error("Erreur :", error);
   });
-
-// à mettre dans le foreach pour tester si l'audio marche <audio controls src="${track.preview}"></audio>
-
-//IMPORTANT GENERER LE LIEN AU MOMENT DU CLIQUE SUR LE BTN PLAY ET NN AU CHARGEMENT DE LA PAGE!!!
-//POUR EVITER LES PROBLEMES D'EXPIRATION
-
-let isLoading = false; //avoid spam
-
-function playTrackFresh(index) {
-  if (isLoading) return;//avoid spam
-  isLoading = true;
-
-  fetch("https://corsproxy.io/?https://api.deezer.com/album/" + album_number)
-    .then(res => res.json())
-    .then(data => {
-      const track = data.tracks.data[index];
-console.log(globalAudio.src);
-
-      globalAudio.src = track.preview; // URL fraîche
-      globalTitle.textContent = track.title;
-      globalArtist.textContent = track.artist.name;
-
-      globalAudio.play();
-    })
-    .finally(() => isLoading = false);
-}
