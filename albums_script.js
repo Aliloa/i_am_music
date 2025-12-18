@@ -12,7 +12,7 @@ function getTopAlbums()
 {
     console.log("Fetching albums from API...");
     
-    const url = DEEZER_API + '/chart/0/albums?limit=9';
+    const url = DEEZER_API + '/chart/0/albums?limit=15';
     
     // Appel HTTP (le "cin >>" de l'API)
     fetch(url)
@@ -51,8 +51,8 @@ function displayAlbums(albums)
                     <img src="${album.cover_medium}" 
                          alt="${album.title} by ${album.artist.name}">
                     <figcaption>
-                        <h2>${album.title}</h2>
-                        <h3>${album.artist.name}</h3>
+                        <h2><a href="songs.html?id=${album.id}">${album.title}</a></h2>
+                        <h3><a href="api-deezer-artist/index.html?id=${album.artist.id}">${album.artist.name}</a></h3>
                     </figcaption>
                 </figure>
             </article>

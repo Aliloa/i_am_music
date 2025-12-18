@@ -6,6 +6,7 @@
     --bg-color: #242424;
     --main-color: #F1F3F4;
     --subtle: #6B6B6B;
+    --border-radius: 10px;
 }
 
 * {
