@@ -1,7 +1,6 @@
 main {
     align-items: center;
     height: 100vh;
-    /* overflow: hidden; */
     display: flex;
     flex-direction: column;
     padding-bottom: 50px;
@@ -29,13 +28,24 @@ h1 {
     text-shadow: -2px 4px 4px rgba(0, 0, 0, 1);
 }
 
-.artist, .global-artist {
+.artist,
+.global-artist {
     color: var(--subtle);
 }
 
+.image {
+    width: 100%;
+    height: 240px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 0 0 22px 22px;
+    margin-top: 0;
+}
+
 .album-cover {
-    max-width: 100%;
-    border-radius: 0px 0px 15px 15px;
+    display: none;
+    /* max-width: 100%;
+    border-radius: 0px 0px 15px 15px; */
 }
 
 .album-songs {
@@ -54,7 +64,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     padding: 8px 18px;
-
+    cursor: pointer;
 }
 
 .box {
@@ -62,7 +72,6 @@ h1 {
     /* opacity: 0.6; */
     color: var(--bg-color);
     border-radius: 15px;
-    /* box-shadow: inset 2px -3px 8px rgba(0, 0, 0, 0.5); */
 }
 
 .active {
@@ -101,9 +110,10 @@ button:hover {
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 90%;
+    width: 95%;
     gap: 8px;
     padding: 0px 8px;
+    border: solid 4px var(--bg-color);
 }
 
 .global-cover {
@@ -125,6 +135,7 @@ audio {
     }
 
     .album-cover {
+        display: block;
         border-radius: 500px;
         max-width: 580px;
         transform: translate(-20%);
@@ -132,5 +143,11 @@ audio {
 
     .album-songs {
         padding-bottom: 0px;
+    }
+
+    .image {
+        background-image: none !important;
+        width: auto;
+        height: auto;
     }
 }

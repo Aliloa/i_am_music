@@ -1,4 +1,8 @@
-var album_number = 843363632;
+// var album_number = 843363632;
+const urlParams = new URLSearchParams(window.location.search);
+const album_number = urlParams.get('id'); // récupère la valeur de "id"
+
+console.log(album_number);
 const timestamp = Date.now(); //bypass the cache so it stops using the expired url for the tracks preview
 
 //convertir les seoncdes en minutes
@@ -17,6 +21,7 @@ fetch(`https://corsproxy.io/?https://api.deezer.com/album/${album_number}?_=${ti
     //title info
     document.getElementById("album-title").textContent = data.title;
     document.getElementById("album-cover").src = data.cover_xl;
+    document.querySelector(".image").style.backgroundImage = `url(${data.cover_xl})`;
     document.getElementById("album-artist").textContent = data.artist.name;
     document.getElementById("album-artist-id").href = "/api-deezer-artist/index.html?id=" + data.artist.id;
 
@@ -50,9 +55,8 @@ fetch(`https://corsproxy.io/?https://api.deezer.com/album/${album_number}?_=${ti
     const globalPlayer = document.querySelector(".global-player");
 
     document.querySelectorAll(".song").forEach((song, index) => {
-      const playBtn = song.querySelector(".play-btn");
 
-      playBtn.addEventListener("click", () => { //on play
+      song.addEventListener("click", () => { //on play
         const track = tracks[index];
         playTrack(track);
         song.classList.add("active");
