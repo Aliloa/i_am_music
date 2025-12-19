@@ -1,26 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-:root{
+:root {
   --bg: #242424;
   --ink: #F1F3F4;
   --muted: #F1F3F4;
-  --accent: #F1F3F4; 
+  --accent: #F1F3F4;
   --radius: 18px;
 }
 
-*{ box-sizing:border-box; }
+*/ * {
+  box-sizing: border-box;
+}
 
-body{
-  margin:0;
-  background: var(--bg);
-  color: var(--ink);
-  font-family: 'Poppins', sans-serif;
+body {
+  margin: 0;
   overflow-x: hidden;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 /* mobile */
 
-.page{
+.page {
   width: 100%;
   max-width: 430px;
   margin: 0 auto;
@@ -28,16 +34,24 @@ body{
   flex-direction: column;
 }
 
-.hero{ order: 1; }
-.content{ order: 2; }
-.discover{ order: 3; }
+.hero {
+  order: 1;
+}
 
-.content{
+.content {
+  order: 2;
+}
+
+.discover {
+  order: 3;
+}
+
+.content {
   padding: 18px 18px 28px;
 }
 
 .content,
-.discover{
+.discover {
   max-width: 100%;
   padding-left: 18px;
   padding-right: 18px;
@@ -45,7 +59,7 @@ body{
 
 .aboutText,
 .trackLabel,
-.discoverLink{
+.discoverLink {
   max-width: 100%;
   overflow-wrap: anywhere;
   word-break: break-word;
@@ -53,11 +67,11 @@ body{
 
 .tracksGrid,
 .trackCard,
-.trackCover{
+.trackCover {
   max-width: 100%;
 }
 
-.listenNow{
+.listenNow {
   position: fixed;
   top: 14px;
   right: 18px;
@@ -68,11 +82,10 @@ body{
   z-index: 50;
 }
 
-.hero{
+.hero {
   width: 100%;
   height: 240px;
   overflow: hidden;
-  background: #333;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -80,101 +93,92 @@ body{
   margin-top: 0;
 }
 
-.heroOverlay{
+.heroOverlay {
   position: absolute;
   inset: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding: 16px;
-  background: linear-gradient(to top, rgba(0,0,0,.72), rgba(0,0,0,.00) 60%);
+  background: linear-gradient(to top, rgba(0, 0, 0, .72), rgba(0, 0, 0, .00) 60%);
 }
 
-.heroTitle{
+.heroTitle {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  font-size: 30px;
   color: #fff;
   line-height: 1.05;
 }
 
-.heroFans{
+.heroFans {
   margin: 6px 0 0;
-  color: rgba(255,255,255,.75);
-  font-size: 12px;
+  color: rgba(255, 255, 255, .75);
 }
 
-.block{ margin-top: 22px; }
+.block {
+  margin-top: 22px;
+}
 
-.h2{
+.h2 {
   margin: 0 0 10px;
-  font-family: 'Poppins', sans-serif;
   color: var(--accent);
-  font-size: 34px;
   font-weight: 500;
 }
 
-.aboutText{
+.aboutText {
   margin: 0;
-  font-size: 13px;
   line-height: 1.55;
-  color: #6B6B6B;
 }
 
 /* top tracks */
 
-.tracksGrid{
+.tracksGrid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
 }
 
-.trackCard{
+.trackCard {
   display: block;
 }
 
-.trackCover{
+.trackCover {
   width: 100%;
   aspect-ratio: 1/1;
   border-radius: 4px;
   object-fit: cover;
-  background: rgba(0,0,0,.08);
-  display:block;
+  background: rgba(0, 0, 0, .08);
+  display: block;
 }
 
-.trackLabel{
+.trackLabel {
   margin: 8px 0 0;
-  font-size: 12px;
-  color: #6B6B6B;
-  text-decoration: underline;
   text-decoration-color: currentColor;
 }
 
 /* discover more */
 
-.discoverLink{
+.discoverLink {
   display: inline-block;
-  color: #6B6B6B;
-  text-decoration: underline;
   font-style: italic;
-  font-size: 13px;
   line-height: 1.4;
 }
 
-.discover{
+.discover {
   padding: 0 18px;
 }
 
-.bottomSpace{ padding-bottom: 14px; }
+.bottomSpace {
+  padding-bottom: 14px;
+}
 
 /* desktop */
-@media (min-width: 900px){
+@media (min-width: 900px) {
 
-  body{
+  body {
     overflow-y: hidden;
   }
 
-  .page{
+  .page {
     max-width: 1200px;
     margin: 0 auto;
     padding: 32px 40px 40px;
@@ -188,125 +192,120 @@ body{
     align-items: start;
   }
 
-  .listenNow{
+  .listenNow {
     top: 28px;
     right: 40px;
   }
 
-  .hero{
+  .hero {
     grid-area: hero;
     height: 420px;
     border-radius: 0;
   }
 
-  .discover{
+  .discover {
     grid-area: discover;
-    margin-top: -25px; 
+    margin-top: -25px;
     margin-left: -20px;
   }
 
-  .content{
+  .content {
     padding: 0;
     grid-area: about;
   }
 
-  .about{
+  .about {
     margin-top: 0;
   }
 
-  .topTracks{
+  .topTracks {
     grid-area: tracks;
-    margin-top: 4px; 
+    margin-top: 4px;
   }
 
-  .tracksGrid{
-    grid-template-columns: repeat(3, minmax(0,1fr));
+  .tracksGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 18px;
-  }
-
-  .h2{
-    font-size: 46px;
   }
 }
 
 /* search page */
 
-.searchPage{
+.searchPage {
   max-width: 520px;
   margin: 0 auto;
   padding: 24px 18px 28px;
 }
 
-.searchTitle{
+.searchTitle {
   margin: 0 0 14px;
-  font-family: 'Poppins', sans-serif;
   color: var(--accent);
-  font-size: 34px;
   font-weight: 500;
 }
 
-.searchForm{
+.searchForm {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 10px;
   align-items: center;
 }
 
-.searchInput{
+.searchInput {
   padding: 12px 12px;
   border-radius: 12px;
-  border: 1px solid rgba(0,0,0,.18);
-  background: rgba(255,255,255,.35);
+  border: 1px solid rgba(0, 0, 0, .18);
+  background: rgba(255, 255, 255, .35);
   outline: none;
   font: inherit;
 }
 
-.searchBtn{
+.searchBtn {
   padding: 12px 14px;
   border-radius: 12px;
-  border: 1px solid rgba(0,0,0,.18);
+  border: 1px solid rgba(0, 0, 0, .18);
   background: #fff;
   cursor: pointer;
   font: inherit;
 }
 
-.searchResultsGrid{
+.searchResultsGrid {
   margin-top: 14px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
 
-.artistResult{
+.artistResult {
   display: grid;
   grid-template-columns: 54px 1fr;
   gap: 10px;
   align-items: center;
   padding: 10px;
-  border: 1px solid rgba(0,0,0,.12);
+  border: 1px solid rgba(0, 0, 0, .12);
   border-radius: 14px;
   text-decoration: none;
   color: inherit;
-  background: rgba(255,255,255,.25);
+  background: rgba(255, 255, 255, .25);
 }
 
-.artistResult img{
+.artistResult img {
   width: 54px;
   height: 54px;
   border-radius: 12px;
   object-fit: cover;
-  background: rgba(0,0,0,.06);
+  background: rgba(0, 0, 0, .06);
 }
 
-.artistResult .name{
+.artistResult .name {
   font-weight: 700;
   line-height: 1.1;
 }
 
-.artistResult .fans{
-  font-size: 12px;
+.artistResult .fans {
   color: var(--muted);
   margin-top: 4px;
 }
 
-.searchHint{ margin-top: 14px; }
+.searchHint {
+  margin-top: 14px;
+}
