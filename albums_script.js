@@ -34,7 +34,7 @@ function display_albums(albums) /* displays data obtained from the API by fillin
 
                     <figcaption>
                         <h2><a href="songs/songs.html?id=${album.id}">${album.title}</a></h2>
-                        <h3><a href="api-deezer-artist/index.html?id=${album.artist.id}">${album.artist.name}</a></h3>
+                        <h3><a href="artists/artists.html?id=${album.artist.id}">${album.artist.name}</a></h3>
                     </figcaption>
                 </figure>
             </article>
