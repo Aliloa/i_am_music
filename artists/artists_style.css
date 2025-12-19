@@ -78,6 +78,7 @@ a:hover {
   color: var(--accent);
   text-decoration: underline;
   font-weight: 700;
+  letter-spacing: .3px;
   z-index: 50;
 }
 
@@ -222,7 +223,42 @@ a:hover {
     margin-top: 4px;
   }
 
-  
+  .tracksGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+}
+
+/* search page */
+
+.searchPage {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 24px 18px 28px;
+}
+
+.searchTitle {
+  margin: 0 0 14px;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.searchForm {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.searchInput {
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, .18);
+  background: rgba(255, 255, 255, .35);
+  outline: none;
+  font: inherit;
+}
+
 .searchBtn {
   padding: 12px 14px;
   border-radius: 12px;
