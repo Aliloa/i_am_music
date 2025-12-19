@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 :root{
-  --bg: #f3efe6;
-  --ink: #1b1b1b;
-  --muted: rgba(0,0,0,.55);
-  --accent: #8b2d2b; 
+  --bg: #242424;
+  --ink: #F1F3F4;
+  --muted: #F1F3F4;
+  --accent: #F1F3F4; 
   --radius: 18px;
 }
 
@@ -12,7 +14,7 @@ body{
   margin:0;
   background: var(--bg);
   color: var(--ink);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
 }
 
@@ -22,7 +24,6 @@ body{
   width: 100%;
   max-width: 430px;
   margin: 0 auto;
-
   display: flex;
   flex-direction: column;
 }
@@ -71,13 +72,10 @@ body{
   width: 100%;
   height: 240px;
   overflow: hidden;
-
   background: #333;
   background-size: cover;
   background-position: center;
-
   position: relative;
-
   border-radius: 0 0 22px 22px;
   margin-top: 0;
 }
@@ -94,7 +92,7 @@ body{
 
 .heroTitle{
   margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 30px;
   color: #fff;
   line-height: 1.05;
@@ -110,7 +108,7 @@ body{
 
 .h2{
   margin: 0 0 10px;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: 'Poppins', sans-serif;
   color: var(--accent);
   font-size: 34px;
   font-weight: 500;
@@ -120,7 +118,7 @@ body{
   margin: 0;
   font-size: 13px;
   line-height: 1.55;
-  color: #1d1d1d;
+  color: #6B6B6B;
 }
 
 /* top tracks */
@@ -147,14 +145,16 @@ body{
 .trackLabel{
   margin: 8px 0 0;
   font-size: 12px;
-  color: #1d1d1d;
+  color: #6B6B6B;
+  text-decoration: underline;
+  text-decoration-color: currentColor;
 }
 
 /* discover more */
 
 .discoverLink{
   display: inline-block;
-  color: #1d1d1d;
+  color: #6B6B6B;
   text-decoration: underline;
   font-style: italic;
   font-size: 13px;
@@ -170,11 +170,14 @@ body{
 /* desktop */
 @media (min-width: 900px){
 
+  body{
+    overflow-y: hidden;
+  }
+
   .page{
     max-width: 1200px;
     margin: 0 auto;
     padding: 32px 40px 40px;
-
     display: grid;
     grid-template-columns: 1.1fr 1fr;
     grid-template-areas:
@@ -198,7 +201,7 @@ body{
 
   .discover{
     grid-area: discover;
-    margin-top: -10px; 
+    margin-top: -25px; 
     margin-left: -20px;
   }
 
@@ -213,7 +216,7 @@ body{
 
   .topTracks{
     grid-area: tracks;
-    margin-top: 32px; 
+    margin-top: 4px; 
   }
 
   .tracksGrid{
@@ -236,7 +239,7 @@ body{
 
 .searchTitle{
   margin: 0 0 14px;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: 'Poppins', sans-serif;
   color: var(--accent);
   font-size: 34px;
   font-weight: 500;
