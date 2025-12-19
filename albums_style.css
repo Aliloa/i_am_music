@@ -62,7 +62,7 @@ h2
 h3 a
 {
     font-size: 1.5rem;
-    color: #acaaaa;
+    color: var(--lighter-color);
 }
 
 a
@@ -106,7 +106,6 @@ a:hover
     h3 a
     {
         font-size: 1rem;
-        color: #acaaaa;
     }
 }
 
