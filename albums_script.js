@@ -2,20 +2,20 @@ const DEEZER_API = 'https://corsproxy.io/?https://api.deezer.com';
 
 window.onload = function()  /* calls the API when page loads */
 {
-    get_top_albums();
+    getTopAlbums();
 };
 
-function get_top_albums() /* fetches data from the API */
+function getTopAlbums() /* fetches data from the API */
 {   
     const url = DEEZER_API + '/chart/0/albums?limit=16'; /* top 16 global albums */
     
     fetch(url)
         .then(response => response.json())  /* conversion of the response */
-        .then(data => {display_albums(data.data)})
+        .then(data => {displayAlbums(data.data)})
         .catch(error => {console.error("ERROR:", error)});
 }
 
-function display_albums(albums) /* displays data obtained from the API by filling the HTML file */
+function displayAlbums(albums) /* displays data obtained from the API by filling the HTML file */
 {
     const container = document.getElementById('albums-section'); /* section containing the elements we want the API to fill */
     
