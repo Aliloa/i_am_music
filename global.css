@@ -7,6 +7,7 @@
     --main-color: #F1F3F4;
     --subtle: #6B6B6B;
     --border-radius: 10px;
+    --padding: 8px;
 }
 
 * {
@@ -18,14 +19,14 @@
 body {
     background-color: var(--bg-color);
     color: var(--main-color);
-  font-family: "Poppins", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-weight: 400;
 }
 
 h1,
 h2,
 h3 {
-  font-family: "Poppins", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-weight: 500;
 }
 

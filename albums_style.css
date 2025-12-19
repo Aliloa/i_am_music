@@ -16,9 +16,10 @@ main
 
 h1
 {
-    padding: 10px 0 20px 0;
-    text-align: center;
-    font-size: 3rem;
+    padding: 20px 0 60px 0;
+    text-align: left;
+    font-size: 1.85rem;
+    text-transform: uppercase;  
 }
 
 #albums-section
@@ -36,37 +37,106 @@ img
     border-radius: var(--border-radius);
 }
 
+img:hover
+{
+    scale: 105%;
+}
+
+img:active
+{
+    opacity: 0.6;
+}
+
 h2, h3
 {
     text-align: left;
+    padding-top: 10px;
 }
 
 h2
 {
-    font-size: 1rem;
+    padding-top: 12px;
+    font-size: 1.5rem;
 }
 
-h3
+h3 a
 {
-    font-size: 0.85rem;
+    font-size: 1.5rem;
     color: #acaaaa;
 }
 
-@media (min-width: 450px) {
-    #albums-section {
+a
+{
+    text-decoration: none;
+}
+
+a:hover
+{
+    text-decoration:underline;
+}
+
+/* MEDIA QUERIES */
+@media screen and (min-width: 450px) 
+{
+    h1
+    {
+        padding: 10px 0 60px 0;
+        text-align: center;
+        font-size: 3rem;
+        text-transform:none;
+    }
+
+    #albums-section 
+    {
         grid-template-columns: 200px 200px;
     }
+
+    h2, h3
+    {
+        text-align: left;
+        padding-top: 0;
+    }
+
+    h2
+    {
+        padding-top: var(--padding);
+        font-size: 1.05rem;
+    }
+
+    h3 a
+    {
+        font-size: 1rem;
+        color: #acaaaa;
+    }
 }
 
-@media (min-width: 809px) {
-    #albums-section {
+@media screen and (min-width: 809px) 
+{
+    #albums-section 
+    {
         grid-template-columns: 200px 200px 200px;
     }
-}
 
-@media (min-width: 1300px) {
-    #albums-section {
-        grid-template-columns: 200px 200px 200px 200px 200px;
+    h2
+    {
+        font-size: 1rem;
+    }
+
+    h3 a
+    {
+        font-size: 0.95rem;
     }
 }
 
+@media screen and (min-width: 1300px) 
+{
+    #albums-section 
+    {
+        grid-template-columns: 200px 200px 200px 200px 200px;
+    }
+
+    h2
+    {
+        padding-top: var(--padding);
+    }
+}
