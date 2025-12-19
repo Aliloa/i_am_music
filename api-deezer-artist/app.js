@@ -114,6 +114,30 @@ function renderTracks(tracks) {
   }).join("");
 }
 
+async function setupListenNow(artistId) {
+  const listen = document.getElementById("listenNow");
+  if (!listen) return;
+
+  listen.href = "#";
+  listen.style.pointerEvents = "none";
+  listen.style.opacity = "0.6";
+
+  try {
+    const albumsRes = await getJSONP(`/artist/${artistId}/albums?limit=1`);
+    const albumId = albumsRes?.data?.[0]?.id;
+
+    if (albumId) {
+      listen.href = `../songs.html?id=${albumId}`;
+      listen.style.pointerEvents = "auto";
+      listen.style.opacity = "1";
+    } else {
+      console.warn("Listen now: artista sin álbum (o data vacía).", { artistId, albumsRes });
+    }
+  } catch (e) {
+    console.warn("Listen now: falló cargar álbum (pero el resto OK).", e);
+  }
+}
+
 async function initArtistPage() {
   const hero = document.getElementById("hero");
   const artistNameEl = document.getElementById("artistName");
@@ -144,10 +168,11 @@ async function initArtistPage() {
     artistFansEl.textContent = artist?.nb_fan ? `${fmt(artist.nb_fan)} fans` : "";
 
     const tracks = top?.data || [];
-    CURRENT_TRACKS = tracks; 
+    CURRENT_TRACKS = tracks;
     bioEl.textContent = generateMiniBioEN(artist, tracks);
-
     renderTracks(tracks);
+
+    await setupListenNow(id);
 
   } catch (err) {
     artistNameEl.textContent = "Error loading artist";
@@ -163,7 +188,6 @@ window.addEventListener("resize", () => {
 });
 
 // search page
-
 async function initSearchPage() {
   const form = document.getElementById("searchForm");
   const input = document.getElementById("searchInput");
@@ -216,7 +240,7 @@ async function initSearchPage() {
 }
 
 (async function boot() {
-  const isSearch = await initSearchPage();
-  if (isSearch) return;
-  await initArtistPage();
+  const isArtist = await initArtistPage();
+  if (isArtist) return;
+  await initSearchPage();
 })();
