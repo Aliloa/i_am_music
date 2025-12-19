@@ -208,7 +208,7 @@ a:hover {
 
   .topTracks {
     grid-area: tracks;
-    margin-top: 4px;
+    margin-top: 24px;
   }
 
   .tracksGrid {
