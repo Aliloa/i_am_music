@@ -29,7 +29,7 @@ fetch(`https://corsproxy.io/?https://api.deezer.com/album/${album_number}?_=${ti
     document.getElementById("album-cover").src = data.cover_xl;
     document.querySelector(".cover-wrapper").style.backgroundImage = `url(${data.cover_xl})`;
     document.getElementById("album-artist").textContent = data.artist.name;
-    document.getElementById("album-artist").href = "api-deezer-artist/index.html?id=" + data.artist.id;
+    document.getElementById("album-artist").href = "../api-deezer-artist/index.html?id=" + data.artist.id;
 
     //tracks info
     const tracks = data.tracks.data;
