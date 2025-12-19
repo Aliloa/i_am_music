@@ -6,6 +6,16 @@
   --radius: 18px;
 }
 
+*/ * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
 a {
   text-decoration: none;
 }
@@ -211,7 +221,7 @@ a:hover {
     grid-area: tracks;
     margin-top: 4px;
   }
-}
+
   
 .searchBtn {
   padding: 12px 14px;
