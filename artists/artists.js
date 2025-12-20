@@ -45,12 +45,12 @@ function qs(name) {
   return new URLSearchParams(window.location.search).get(name);
 }
 
-function generateMiniBioEN(artist, topTracks) {
+function generateMiniBioEN(artist, top_tracks) {
   const name = artist?.name || "This artist";
   const fans = artist?.nb_fan ? fmt(artist.nb_fan) : null;
   const albums = artist?.nb_album ? fmt(artist.nb_album) : null;
 
-  const top = (topTracks || [])
+  const top = (top_tracks || [])
     .slice(0, 4)
     .map(t => t?.title)
     .filter(Boolean);
@@ -92,8 +92,8 @@ function renderTracks(tracks) {
     return;
   }
 
-  const isDesktop = window.matchMedia("(min-width: 900px)").matches;
-  const limit = isDesktop ? 3 : 6;
+  const is_desktop = window.matchMedia("(min-width: 900px)").matches;
+  const limit = is_desktop ? 3 : 6;
 
   grid.innerHTML = tracks.slice(0, limit).map((t, i) => {
     const cover =
@@ -106,32 +106,32 @@ function renderTracks(tracks) {
     const link = t?.link || "#";
 
     return `
-      <a class="trackCard" href="${link}" target="_blank" rel="noreferrer">
-        <img class="trackCover" src="${cover}" alt="">
-        <p class="trackLabel">${i + 1}. ${title}</p>
+      <a class="track-card" href="${link}" target="_blank" rel="noreferrer">
+        <img class="track-cover" src="${cover}" alt="">
+        <p class="track-label">${i + 1}. ${title}</p>
       </a>
     `;
   }).join("");
 }
 
-async function setupListenNow(artistId) {
-  const listen = document.getElementById("listenNow");
-  if (!listen) return;
+async function setupListenNow(artist_id) {
+  const listen_el = document.getElementById("listenNow");
+  if (!listen_el) return;
 
-  listen.href = "#";
-  listen.style.pointerEvents = "none";
-  listen.style.opacity = "0.6";
+  listen_el.href = "#";
+  listen_el.style.pointerEvents = "none";
+  listen_el.style.opacity = "0.6";
 
   try {
-    const albumsRes = await getJSONP(`/artist/${artistId}/albums?limit=1`);
-    const albumId = albumsRes?.data?.[0]?.id;
+    const albums_res = await getJSONP(`/artist/${artist_id}/albums?limit=1`);
+    const album_id = albums_res?.data?.[0]?.id;
 
-    if (albumId) {
-      listen.href = `../songs.html?id=${albumId}`;
-      listen.style.pointerEvents = "auto";
-      listen.style.opacity = "1";
+    if (album_id) {
+      listen_el.href = `../songs.html?id=${album_id}`;
+      listen_el.style.pointerEvents = "auto";
+      listen_el.style.opacity = "1";
     } else {
-      console.warn("Listen now: artista sin álbum (o data vacía).", { artistId, albumsRes });
+      console.warn("Listen now: artista sin álbum (o data vacía).", { artistId: artist_id, albumsRes: albums_res });
     }
   } catch (e) {
     console.warn("Listen now: falló cargar álbum (pero el resto OK).", e);
@@ -140,18 +140,18 @@ async function setupListenNow(artistId) {
 
 async function initArtistPage() {
   const hero = document.getElementById("hero");
-  const artistNameEl = document.getElementById("artistName");
-  const artistFansEl = document.getElementById("artistFans");
-  const bioEl = document.getElementById("artistBio");
-  const tracksGrid = document.getElementById("tracksGrid");
+  const artist_name_el = document.getElementById("artistName");
+  const artist_fans_el = document.getElementById("artistFans");
+  const bio_el = document.getElementById("artistBio");
+  const tracks_grid_el = document.getElementById("tracksGrid");
 
-  if (!hero || !artistNameEl || !artistFansEl || !bioEl || !tracksGrid) return false;
+  if (!hero || !artist_name_el || !artist_fans_el || !bio_el || !tracks_grid_el) return false;
 
   const id = qs("id") || "27";
 
-  artistNameEl.textContent = "Loading...";
-  artistFansEl.textContent = "";
-  bioEl.textContent = "";
+  artist_name_el.textContent = "Loading...";
+  artist_fans_el.textContent = "";
+  bio_el.textContent = "";
   setHeroBg("");
   renderTracks([]);
 
@@ -161,22 +161,22 @@ async function initArtistPage() {
       getJSONP(`/artist/${id}/top?limit=6`)
     ]);
 
-    const heroImg = artist?.picture_xl || artist?.picture_big || artist?.picture_medium;
-    setHeroBg(heroImg);
+    const hero_img = artist?.picture_xl || artist?.picture_big || artist?.picture_medium;
+    setHeroBg(hero_img);
 
-    artistNameEl.textContent = artist?.name || "Artist";
-    artistFansEl.textContent = artist?.nb_fan ? `${fmt(artist.nb_fan)} fans` : "";
+    artist_name_el.textContent = artist?.name || "Artist";
+    artist_fans_el.textContent = artist?.nb_fan ? `${fmt(artist.nb_fan)} fans` : "";
 
     const tracks = top?.data || [];
     CURRENT_TRACKS = tracks;
-    bioEl.textContent = generateMiniBioEN(artist, tracks);
+    bio_el.textContent = generateMiniBioEN(artist, tracks);
     renderTracks(tracks);
 
     await setupListenNow(id);
 
   } catch (err) {
-    artistNameEl.textContent = "Error loading artist";
-    bioEl.textContent = "No data from Deezer.";
+    artist_name_el.textContent = "Error loading artist";
+    bio_el.textContent = "No data from Deezer.";
     console.error(err);
   }
 
@@ -221,11 +221,11 @@ async function initSearchPage() {
       status.textContent = "";
 
       results.innerHTML = list.map(a => `
-        <a class="artistResult" href="./index.html?id=${a.id}">
+        <a class="artist-result" href="./index.html?id=${a.id}">
           <img src="${a.picture_medium || ""}" alt="">
           <div>
-            <div class="name">${a.name}</div>
-            <div class="fans">${a.nb_fan ? fmt(a.nb_fan) + " fans" : ""}</div>
+            <div class="artist-result-name">${a.name}</div>
+            <div class="artist-result-fans">${a.nb_fan ? fmt(a.nb_fan) + " fans" : ""}</div>
           </div>
         </a>
       `).join("");
@@ -240,7 +240,7 @@ async function initSearchPage() {
 }
 
 (async function boot() {
-  const isArtist = await initArtistPage();
-  if (isArtist) return;
+  const is_artist = await initArtistPage();
+  if (is_artist) return;
   await initSearchPage();
 })();
