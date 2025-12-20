@@ -18,6 +18,7 @@ const global_artist = document.getElementById("global-artist");
 const global_cover = document.getElementById("global-cover");
 const global_player = document.querySelector(".global-player");
 
+
 //API CALL
 fetch(`https://corsproxy.io/?https://api.deezer.com/album/${album_number}?_=${timestamp}`)
   .then(response => response.json())
@@ -30,6 +31,7 @@ fetch(`https://corsproxy.io/?https://api.deezer.com/album/${album_number}?_=${ti
     document.querySelector(".cover-wrapper").style.backgroundImage = `url(${data.cover_xl})`;
     document.getElementById("album-artist").textContent = data.artist.name;
     document.getElementById("album-artist").href = "../artists/artists.html?id=" + data.artist.id;
+    document.title = data.title + " – " + data.artist.name;
 
     //tracks info
     const tracks = data.tracks.data;
@@ -41,7 +43,7 @@ fetch(`https://corsproxy.io/?https://api.deezer.com/album/${album_number}?_=${ti
                     <div class="song box">
                     <div class="flex">
                         <p class="track-number">${index + 1}.</p>
-                        <button class="play-btn">▶</button>
+                        <button class="play-btn" aria-label="Lire ${track.title} de ${data.artist.name}">▶</button>
                         <div class="song-info">
                             <p class="title">${track.title}</p>
                             <p class="artist">${data.artist.name}</p>
