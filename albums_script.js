@@ -7,7 +7,7 @@ window.onload = function()  /* calls the API when page loads */
 
 function getTopAlbums() /* fetches data from the API */
 {   
-    const url = DEEZER_API + '/chart/0/albums?limit=16'; /* top 16 global albums */
+    const url = DEEZER_API + '/chart/0/albums?limit=15'; /* top 15 global albums */
     
     fetch(url)
         .then(response => response.json())  /* conversion of the response */
@@ -41,5 +41,26 @@ function displayAlbums(albums) /* displays data obtained from the API by filling
         `;
         
         container.innerHTML += albumHTML;
+    }
+
+    /* Managing unavailable albums : */
+    const nb_lacking_albums = 15 - albums.length;
+
+    if (nb_lacking_albums > 0)
+    {
+        for(let i = 0 ; i < nb_lacking_albums; i++) /* displaying a place holder for each unavailable album */
+        {
+            container.innerHTML += `
+                <article class="album">
+                    <figure>
+                        <img src="assets/images/place_holder.png" alt="">
+
+                        <figcaption>
+                            <h2>Unavailable album</h2>
+                        </figcaption>
+                    </figure>
+                </article>
+            `;
+        }
     }
 }
