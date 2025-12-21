@@ -187,60 +187,6 @@ window.addEventListener("resize", () => {
   if (CURRENT_TRACKS.length) renderTracks(CURRENT_TRACKS);
 });
 
-// search page
-async function initSearchPage() {
-  const form = document.getElementById("searchForm");
-  const input = document.getElementById("searchInput");
-  const status = document.getElementById("searchStatus");
-  const results = document.getElementById("searchResults");
-
-  if (!form || !input || !results) return false;
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const q = input.value.trim();
-
-    if (q.length < 2) {
-      status.textContent = "Write at least 2 characters.";
-      results.innerHTML = "";
-      return;
-    }
-
-    status.textContent = "Searching...";
-    results.innerHTML = "";
-
-    try {
-      const data = await getJSONP(`/search/artist?q=${encodeURIComponent(q)}&limit=10`);
-      const list = data?.data || [];
-
-      if (!list.length) {
-        status.textContent = "Nothing found. Try another name.";
-        return;
-      }
-
-      status.textContent = "";
-
-      results.innerHTML = list.map(a => `
-        <a class="artist-result" href="./index.html?id=${a.id}">
-          <img src="${a.picture_medium || ""}" alt="">
-          <div>
-            <div class="artist-result-name">${a.name}</div>
-            <div class="artist-result-fans">${a.nb_fan ? fmt(a.nb_fan) + " fans" : ""}</div>
-          </div>
-        </a>
-      `).join("");
-
-    } catch (err) {
-      status.textContent = "Error. Try again.";
-      console.error(err);
-    }
-  });
-
-  return true;
-}
-
 (async function boot() {
-  const is_artist = await initArtistPage();
-  if (is_artist) return;
-  await initSearchPage();
+  await initArtistPage();
 })();
