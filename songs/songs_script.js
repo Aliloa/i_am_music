@@ -1,6 +1,6 @@
 // var album_number = 843363632;
 const urlParams = new URLSearchParams(window.location.search);
-const album_number = urlParams.get('id'); // récupère la valeur de "id"
+const album_number = urlParams.get('id');
 
 console.log(album_number);
 const timestamp = Date.now(); //bypass the cache so it stops using the expired url for the tracks preview
