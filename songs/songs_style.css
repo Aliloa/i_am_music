@@ -50,8 +50,8 @@ canvas {
     z-index: -1;
     top: 50%;
     left: 50%;
-    width: 110%;
-    height: 110%;
+    width: 120%;
+    height: 120%;
     transform: translate(-65%, -50%);
 }
 
@@ -92,6 +92,7 @@ canvas {
     /* opacity: 0.6; */
     color: var(--bg-color);
     border-radius: 15px;
+    transition: 0.2s;
 }
 
 .active {
@@ -109,6 +110,7 @@ button {
     border: 0;
     font-size: 20px;
     cursor: pointer;
+    transition: 0.2s;
 }
 
 button:hover {

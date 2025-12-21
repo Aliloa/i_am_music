@@ -143,7 +143,7 @@ function renderFrame() {
 
   for (let i = 0; i < bars; i++) {
     const value = data_array[i];
-    const angle = (i / bars) * Math.PI * 2 - 2.8;
+    const angle = (i / bars) * Math.PI * 2 - 2.3;
 
     const bar_length = value * 0.8; // bar length proportional to frequency
 
