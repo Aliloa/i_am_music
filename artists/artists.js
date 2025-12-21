@@ -103,10 +103,10 @@ function renderTracks(tracks) {
       "";
 
     const title = t?.title || "Track";
-    const link = t?.link || "#";
+    const link = t?.album.id || "#";
 
     return `
-      <a class="track-card" href="${link}" target="_blank" rel="noreferrer">
+      <a class="track-card" href="../songs/songs.html?id=${link}" rel="noreferrer">
         <img class="track-cover" src="${cover}" alt="">
         <p class="track-label">${i + 1}. ${title}</p>
       </a>
