@@ -125,6 +125,11 @@ a:hover {
   object-fit: cover;
   background: rgba(0, 0, 0, .08);
   display: block;
+  transition: 0.2s;
+}
+
+.track-cover:hover {
+  scale: 105%;
 }
 
 .track-label {
@@ -150,10 +155,6 @@ a:hover {
 
 /* desktop */
 @media (min-width: 900px) {
-
-  body {
-    overflow-y: hidden;
-  }
 
   .page {
     max-width: 1200px;
